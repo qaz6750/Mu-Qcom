@@ -31,7 +31,7 @@
   # 0 = SDM660
   # 1 = SDM636
   # 2 = SDM630
-  SOC_TYPE                       = 1
+  SOC_TYPE                       = 0
 
 [BuildOptions.common]
   *_*_*_CC_FLAGS = -DSOC_TYPE=$(SOC_TYPE) -DDISPLAY_USES_RGBA=$(DISPLAY_USES_RGBA)
@@ -44,14 +44,14 @@
   # Device Specific
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000              # Starting Address
 !if $(RAM_SIZE) == 6
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000             # 6GB Size
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0xFDFA0000
 !elseif $(RAM_SIZE) == 4
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x100000000             # 4GB Size
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0xFDFA0000
 !else
 !error "Invaild Mem Size! Use 6 or 4."
 !endif
 
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"AistopGit"  # Device Maintainer
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"nothing"  # Device Maintainer
 
   gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x9FF8C000
 
@@ -59,15 +59,15 @@
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|0x00040000           # 256K stack
 
   # SmBios
-  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemVendor|"Xiaomi Inc"
-  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Mi Max 3"
+  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemVendor|"Bbkedu"
+  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemModel|"S5"
   gQcomPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"h7000"
-  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Mi_Max_3_h7000"
-  gQcomPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Mi Max 3"
+  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"S5"
+  gQcomPkgTokenSpaceGuid.PcdSmbiosBoardModel|"S5"
 
   # Simple FrameBuffer
-  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1080
-  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2160
+  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1600
+  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|2176
   gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
 
 [PcdsDynamicDefault.common]
